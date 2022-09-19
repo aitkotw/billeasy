@@ -1,9 +1,14 @@
-
-const express = require('express');
-const testControllers = require('../controllers/test.controllers');
+const express = require("express");
+const testControllers = require("../controllers/test.controllers");
 const router = express.Router();
-const authentication = require('../middleware/auth.middleware');
 
-router.get('/get', authentication, testControllers.getAll);
+router.post("/employee", testControllers.addNewEmployee);
+router.get("/employee", testControllers.getAllEmployees);
+router.get("/employee/:id", testControllers.getSingleEmployee);
 
-module.exports = router
+router.post("/department", testControllers.addNewDepartment);
+router.get("/department", testControllers.getAllDepartments);
+
+router.get("/subset/:set/:k", testControllers.subSetProblem);
+
+module.exports = router;

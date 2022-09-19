@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // API Routes
-app.use("/test", testRouter);
+app.use(testRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
