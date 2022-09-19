@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   db:
-    container_name: pg_container
+    container_name: pg_container_task
     image: postgres
     restart: always
     environment:
@@ -11,7 +11,7 @@ services:
     volumes:
       - ./migration:/docker-entrypoint-initdb.d
     ports:
-      - "5431:5432"
+      - "5433:5432"
     networks:
       - default
   # pgadmin:
@@ -19,7 +19,7 @@ services:
   #   image: dpage/pgadmin4
   #   restart: always
   #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: aitkotw@gmail.com
+  #     PGADMIN_DEFAULT_EMAIL: test@gmail.com
   #     PGADMIN_DEFAULT_PASSWORD: kLUx3TRq6RLcLP6
   #   ports:
   #     - "5051:80"
@@ -28,16 +28,16 @@ services:
   #   networks:
   #     - default
   app:
-    container_name: app
+    container_name: bill_easyApp
     build: .
     restart: always
     environment:
-      PORT: 5000
+      PORT: 5002
       PGUSER: postgres
       PGDATABASE: postgres
       PGPASSWORD: kLUx3TRq6RLcLP6
       PGPORT: 5432
-      PGHOST: pg_container
+      PGHOST: pg_container_task
       ENVIRONMENT: production
     ports:
       - "5001:5000"
